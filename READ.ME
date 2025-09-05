@@ -1,0 +1,71 @@
+# Minimal API Estacionamento
+
+Este projeto é uma API REST minimalista para gerenciamento de veículos e administradores de um estacionamento, utilizando .NET 9, Entity Framework Core e autenticação JWT.
+
+## Funcionalidades
+
+- Cadastro e autenticação de administradores
+- Cadastro, listagem, consulta e remoção de veículos
+- Proteção de rotas por perfil de usuário (Admin, Editor)
+- Documentação interativa via Swagger
+
+## Estrutura do Projeto
+
+- **Api/**: Código principal da API
+- **Data/**: Contexto do banco de dados
+- **Dominio/**: Entidades, DTOs, interfaces e serviços de domínio
+- **Handlers/**: Manipuladores dos endpoints
+- **Services/**: Serviços auxiliares (ex: geração de token)
+- **Validators/**: Validações com FluentValidation
+- **Test/**: Projeto de testes automatizados
+
+## Pré-requisitos
+
+- [.NET 9 SDK](https://dotnet.microsoft.com/download)
+- [SQLite](https://www.sqlite.org/download.html) (opcional, pois o EF Core cria o arquivo automaticamente)
+- Editor de código (VS Code recomendado)
+
+## Como rodar o projeto
+
+1. **Clone o repositório**
+   ```sh
+   git clone <url-do-repositorio>
+   cd minimal-api
+   ```
+
+2. **Restaure os pacotes**
+   ```sh
+   dotnet restore Api/mininal-api.csproj
+   ```
+
+3. **Execute as migrações e rode a API**
+   ```sh
+   dotnet run --project Api/mininal-api.csproj
+   ```
+
+4. **Acesse a documentação**
+   - Abra [http://localhost:5004/swagger/index.html](http://localhost:5004/swagger/index.html)
+
+## Usuário padrão para testes
+
+Ao rodar pela primeira vez, um usuário admin é criado automaticamente:
+
+```json
+{
+  "login": "admin",
+  "senha": "123456"
+}
+```
+
+## Testes
+
+Para rodar os testes automatizados:
+
+```sh
+dotnet test Test/Test.csproj
+```
+
+## Observações
+
+- As rotas protegidas exigem autenticação JWT. Faça login pelo endpoint `/auth/login` e use o token retornado no Swagger (botão "Authorize").
+- O banco de dados é criado automaticamente em `Api/app.db`.
